@@ -50,7 +50,7 @@ http {
     port_in_redirect off;
     keepalive_timeout 5;
     root <%= root %>;
-    client_max_body_size "2M";
+    client_max_body_size "1M";
   <% if error_page %>
     error_page 404 500 /<%= error_page %>;
   <% end %>
