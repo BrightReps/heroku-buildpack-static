@@ -17,6 +17,13 @@ http {
 
   server_tokens off;
 
+  fastcgi_buffers 16 16k;
+  fastcgi_buffer_size 32k;
+
+  proxy_buffer_size   128k;
+  proxy_buffers   4 256k;
+  proxy_busy_buffers_size   256k;
+
 <% if logging['access'] %>
   access_log logs/access.log;
 <% else %>
@@ -43,6 +50,7 @@ http {
     port_in_redirect off;
     keepalive_timeout 5;
     root <%= root %>;
+    client_max_body_size "2M";
   <% if error_page %>
     error_page 404 500 /<%= error_page %>;
   <% end %>
